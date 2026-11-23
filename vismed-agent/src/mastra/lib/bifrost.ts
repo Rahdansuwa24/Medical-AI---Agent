@@ -2,7 +2,14 @@ import 'dotenv/config';
 import { createOpenAI } from '@ai-sdk/openai';
 
 const apiKey = process.env.BIFROST_API_KEY || '';
-const baseURL = process.env.BIFROST_BASE_URL || 'https://bifrost.hcm-lab.id/v1';
+const rawBaseURL = process.env.BIFROST_BASE_URL || 'https://bifrost.hcm-lab.id/v1';
+const baseURL = rawBaseURL.replace(/\/chat\/completions\/?$/, '').replace(/\/+$/, '');
+
+if (!apiKey) {
+  console.warn(
+    '[Bifrost Security Warning] BIFROST_API_KEY tidak terdeteksi di environment (.env). Pastikan kunci API telah dikonfigurasi.'
+  );
+}
 
 export const bifrostProvider = createOpenAI({
   baseURL,
