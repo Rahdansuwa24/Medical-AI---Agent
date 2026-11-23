@@ -9,6 +9,11 @@ export const fetchDicomMetadataTool = createTool({
   inputSchema: z.object({
     studyId: z
       .string()
+      .trim()
+      .regex(
+        /^[A-Za-z0-9_-]{1,64}$/,
+        'Format Study ID tidak valid. Hanya karakter alfanumerik, garis bawah (_), dan tanda hubung (-) yang diperbolehkan.'
+      )
       .describe(
         'ID Study pemeriksaan pasien di PACS (contoh: STUDY_TB_001, STUDY_STROKE_002, STUDY_NORMAL_003)'
       ),
@@ -33,14 +38,14 @@ export const fetchDicomMetadataTool = createTool({
     message: z.string().optional(),
   }),
   execute: async ({ studyId }) => {
-    const study = (mockDicom as Record<string, any>)[studyId];
-
-    if (!study) {
+    if (!Object.prototype.hasOwnProperty.call(mockDicom, studyId)) {
       return {
         success: false,
         message: `Data pemeriksaan DICOM untuk Study ID "${studyId}" tidak ditemukan di server PACS.`,
       };
     }
+
+    const study = (mockDicom as Record<string, any>)[studyId];
 
     return {
       success: true,
