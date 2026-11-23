@@ -1,0 +1,77 @@
+{
+  "STUDY_TB_001": {
+    "studyId": "STUDY_TB_001",
+    "modelUsed": "xray_tuberculosis",
+    "modality": "DX",
+    "prediction": "Tuberculosis Suspected",
+    "confidence": 0.912,
+    "findings": [
+      {
+        "finding": "Infiltrat inhomogen pada zona superior apeks paru kanan",
+        "severity": "High",
+        "probability": 0.91
+      },
+      {
+        "finding": "Kavitas berdinding tipis pada lapangan atas paru kanan",
+        "severity": "Moderate",
+        "probability": 0.78
+      },
+      {
+        "finding": "Corakan bronkovaskular kasar pada kedua lapangan paru",
+        "severity": "Low",
+        "probability": 0.65
+      }
+    ],
+    "recommendationAlert": "Kecurigaan tinggi infeksi Mycobacterium tuberculosis aktif. Sarankan konfirmasi mikrobiologis TCM (Tes Cepat Molekuler) sputum."
+  },
+  "STUDY_STROKE_002": {
+    "studyId": "STUDY_STROKE_002",
+    "modelUsed": "ct_brain_stroke",
+    "modality": "CT",
+    "prediction": "Intracranial Hemorrhage Suspected",
+    "confidence": 0.885,
+    "findings": [
+      {
+        "finding": "Lesi hiperdens batas tegas pada area ganglia basalis hemisfer serebri sinistra",
+        "severity": "Critical",
+        "probability": 0.89
+      },
+      {
+        "finding": "Edema perifokal minimal di sekitar lesi",
+        "severity": "Moderate",
+        "probability": 0.74
+      },
+      {
+        "finding": "Kompresi kornu anterior ventrikel lateral sinistra tanpa tanda midline shift signifikan (< 3 mm)",
+        "severity": "Moderate",
+        "probability": 0.72
+      }
+    ],
+    "recommendationAlert": "Temuan mengarah pada perdarahan intraserebral akut (stroke hemoragik). Diperlukan evaluasi neurovaskular cito dan stabilisasi tekanan darah."
+  },
+  "STUDY_NORMAL_003": {
+    "studyId": "STUDY_NORMAL_003",
+    "modelUsed": "xray_general",
+    "modality": "DX",
+    "prediction": "No Significant Abnormality Detected",
+    "confidence": 0.965,
+    "findings": [
+      {
+        "finding": "Corakan bronkovaskular dalam batas normal, tidak tampak infiltrat maupun konsolidasi",
+        "severity": "Normal",
+        "probability": 0.97
+      },
+      {
+        "finding": "Kedua sinus kostofrenikus lancip, hemidiafragma kanan dan kiri licin",
+        "severity": "Normal",
+        "probability": 0.98
+      },
+      {
+        "finding": "Ukuran dan bentuk jantung dalam batas normal (CTR < 50%)",
+        "severity": "Normal",
+        "probability": 0.95
+      }
+    ],
+    "recommendationAlert": "Foto rontgen thorax dalam batas normal. Tidak ditemukan kelainan radiologis aktif."
+  }
+}

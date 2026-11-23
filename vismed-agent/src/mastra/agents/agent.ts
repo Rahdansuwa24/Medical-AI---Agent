@@ -5,6 +5,7 @@ import { askUserTool, webFetchTool, webSearchTool } from '@mastra/core/tools';
 import { LocalFilesystem, LocalSandbox, WORKSPACE_TOOLS, Workspace } from '@mastra/core/workspace';
 import { Memory } from '@mastra/memory';
 import { startScheduleTool, stopScheduleTool } from '../tools/schedule-tools';
+import { medGemmaModel } from '../lib/bifrost';
 
 const workspacePath = 'workspace';
 
@@ -32,27 +33,28 @@ const workspace = new Workspace({
 
 export const agent = new Agent({
   id: 'agent',
-  name: 'Agent',
+  name: 'VisMed Radiology Copilot',
   description:
-    'A general-purpose assistant that can research, manage tasks, work with local files, run approved commands, and create recurring schedules.',
+    'Asisten kecerdasan buatan klinis untuk dokter dan radiolog dalam menganalisis metadata medis dan temuan citra radiologi.',
   metadata: {
     suggestedPrompts: [
-      "What's the weather in Austin this weekend?",
-      "What's the SPCX stock price right now?",
-      'Build a Japanese sakura festival landing page.',
+      'Perkenalkan dirimu dan jelaskan peranmu sebagai asisten radiologi.',
+      'Analisis temuan citra rontgen dada untuk dugaan tuberkulosis.',
+      'Rangkum temuan klinis pasien dalam format SOAP standar.',
     ],
   },
-  instructions: `You are a friendly starter agent for exploring what Mastra can do. Help the user try useful capabilities, build small projects, answer current questions, and shape this harness into a starting point for future work.
+  instructions: `Anda adalah VisMed Radiology Copilot, asisten AI klinis yang dirancang untuk mendukung dokter dan radiolog.
 
-Suggested prompts: Get the weather forecast for your city; Create a Japanese Sakura festival page; Tell me the SPCX stock price now, then every minute.
-
-When the user greets you or does not have a specific task, invite them to try the suggested prompts.
-
-Ask concise questions when something is unclear or a good question could surface a useful insight.
-
-For local file changes, end with a plain-text URL using ${pathToFileURL(`${workspacePath}/`).href}; avoid Markdown links, localhost, /workspace, relative paths, and static-file servers.
+Tugas dan Pedoman Anda:
+1. Membantu dokter dalam interpretasi metadata medis, keluhan pasien, dan temuan radiologi.
+2. Menyusun laporan medis terstruktur dalam format standar:
+   - TEMUAN (Findings): Rangkuman temuan visual dan kondisi pasien.
+   - IMPRESI (Impression): Kesimpulan diagnostik klinis.
+   - REKOMENDASI (Recommendations): Tindakan lanjutan (misal tes laboratorium, rujukan, atau scan lanjutan).
+3. Selalu sertakan disclaimer medis bahwa keputusan diagnostik dan penanganan akhir berada di tangan dokter penanggung jawab pasien.
+4. Gunakan bahasa Indonesia medis yang profesional, objektif, dan baku.
 `,
-  model: 'openai/gpt-6.1-sol',
+  model: medGemmaModel,
   defaultOptions: {
     maxSteps: 100,
     autoResumeSuspendedTools: true,
@@ -61,7 +63,7 @@ For local file changes, end with a plain-text URL using ${pathToFileURL(`${works
     options: {
       generateTitle: true,
       observationalMemory: {
-        model: 'openai/gpt-6-luna',
+        model: medGemmaModel,
       },
     },
   }),

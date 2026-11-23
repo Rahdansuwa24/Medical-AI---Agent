@@ -1,0 +1,41 @@
+{
+  "STUDY_TB_001": {
+    "studyId": "STUDY_TB_001",
+    "patientId": "PA-2026-089",
+    "patientName": "Tn. Ahmad Santoso",
+    "patientAge": "45Y",
+    "patientSex": "M",
+    "modality": "DX",
+    "bodyPartExamined": "CHEST",
+    "studyDescription": "Foto Thorax PA (Posisi Erect)",
+    "studyDate": "2026-11-20",
+    "clinicalComplaint": "Batuk produktif bercampur bercak darah lebih dari 3 minggu, demam subfebris terutama malam hari disertai keringat dingin, penurunan nafsu makan dan berat badan turun drastis 6 kg dalam 1 bulan.",
+    "referringPhysician": "dr. Budi, Sp.P"
+  },
+  "STUDY_STROKE_002": {
+    "studyId": "STUDY_STROKE_002",
+    "patientId": "PA-2026-104",
+    "patientName": "Ny. Siti Rahma",
+    "patientAge": "58Y",
+    "patientSex": "F",
+    "modality": "CT",
+    "bodyPartExamined": "HEAD",
+    "studyDescription": "CT Scan Kepala Non-Kontras Potongan Aksial",
+    "studyDate": "2026-11-22",
+    "clinicalComplaint": "Penurunan kesadaran bertahap, kelemahan mendadak pada anggota gerak sisi kanan (hemiparesis dextra) sejak 3 jam SMRS, bicara pelo (disartria), riwayat hipertensi tidak rutin minum obat.",
+    "referringPhysician": "dr. Rina, Sp.N"
+  },
+  "STUDY_NORMAL_003": {
+    "studyId": "STUDY_NORMAL_003",
+    "patientId": "PA-2026-112",
+    "patientName": "Nn. Dewi Lestari",
+    "patientAge": "24Y",
+    "patientSex": "F",
+    "modality": "DX",
+    "bodyPartExamined": "CHEST",
+    "studyDescription": "Foto Thorax PA Skrining MCU",
+    "studyDate": "2026-11-23",
+    "clinicalComplaint": "Pemeriksaan kesehatan rutin tahunan (Medical Check Up), tidak ada keluhan batuk, sesak nafas, maupun riwayat penyakit paru kronis.",
+    "referringPhysician": "dr. Andi (Dokter Umum MCU)"
+  }
+}
