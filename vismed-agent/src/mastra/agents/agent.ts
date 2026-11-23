@@ -5,6 +5,7 @@ import { askUserTool, webFetchTool, webSearchTool } from '@mastra/core/tools';
 import { LocalFilesystem, LocalSandbox, WORKSPACE_TOOLS, Workspace } from '@mastra/core/workspace';
 import { Memory } from '@mastra/memory';
 import { startScheduleTool, stopScheduleTool } from '../tools/schedule-tools';
+import { fetchDicomMetadataTool } from '../tools/dicom-tool';
 import { medGemmaModel } from '../lib/bifrost';
 
 const workspacePath = 'workspace';
@@ -69,6 +70,7 @@ Tugas dan Pedoman Anda:
   }),
   workspace,
   tools: {
+    fetch_dicom_metadata: fetchDicomMetadataTool,
     ask_user: askUserTool,
     start_schedule: startScheduleTool,
     stop_schedule: stopScheduleTool,
