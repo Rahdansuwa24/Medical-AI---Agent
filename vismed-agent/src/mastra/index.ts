@@ -9,6 +9,9 @@ import {
 } from '@mastra/observability';
 import { agent } from './agents/agent';
 import { radiologyWorkflow } from './workflows/radiology-workflow';
+import { resolveStorageConfig } from './lib/storage-paths';
+
+const storageConfig = resolveStorageConfig();
 
 export const mastra = new Mastra({
   bundler: {
@@ -20,11 +23,13 @@ export const mastra = new Mastra({
     id: 'composite-storage',
     default: new LibSQLStore({
       id: 'mastra-storage',
-      url: process.env.TURSO_DATABASE_URL || 'file:./mastra.db',
+      url: storageConfig.libsqlUrl,
       authToken: process.env.TURSO_AUTH_TOKEN || undefined,
     }),
     domains: {
-      observability: await new DuckDBStore().getStore('observability'),
+      observability: await new DuckDBStore({
+        path: storageConfig.duckdbPath,
+      }).getStore('observability'),
     },
   }),
   observability: new Observability({

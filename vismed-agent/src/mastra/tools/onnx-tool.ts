@@ -1,22 +1,16 @@
 import { createTool } from '@mastra/core/tools';
 import { z } from 'zod';
 import mockOnnx from '../mocks/mock-onnx.json';
+import { studyIdSchema } from '../lib/validation';
 
 export const runOnnxVisionTool = createTool({
   id: 'run_onnx_vision_inference',
   description:
     'Menjalankan inferensi model AI Vision ONNX untuk mendeteksi penyakit atau kelainan radiologis pada citra medis (X-Ray / CT Scan). Mendukung deteksi Tuberkulosis paru (TBC), Stroke perdarahan intrakranial, serta skrining toraks umum.',
   inputSchema: z.object({
-    studyId: z
-      .string()
-      .trim()
-      .regex(
-        /^[A-Za-z0-9_-]{1,64}$/,
-        'Format Study ID tidak valid. Hanya karakter alfanumerik, garis bawah (_), dan tanda hubung (-) yang diperbolehkan.'
-      )
-      .describe(
-        'ID Study pemeriksaan yang akan dianalisis citranya (contoh: STUDY_TB_001, STUDY_STROKE_002, STUDY_NORMAL_003)'
-      ),
+    studyId: studyIdSchema.describe(
+      'ID Study pemeriksaan yang akan dianalisis citranya (contoh: 1.2.840.113619.2.55.3.4270889 atau STUDY_TB_001)'
+    ),
     modality: z
       .string()
       .trim()

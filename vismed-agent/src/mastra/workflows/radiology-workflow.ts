@@ -3,17 +3,11 @@ import { z } from 'zod';
 import { fetchDicomMetadataTool } from '../tools/dicom-tool';
 import { runOnnxVisionTool } from '../tools/onnx-tool';
 import { medGemmaModel } from '../lib/bifrost';
+import { studyIdSchema } from '../lib/validation';
 
 // 1. Schema Input Workflow
 export const radiologyInputSchema = z.object({
-  studyId: z
-    .string()
-    .trim()
-    .regex(
-      /^[A-Za-z0-9_-]{1,64}$/,
-      'Format Study ID tidak valid. Hanya karakter alfanumerik, garis bawah (_), dan tanda hubung (-) yang diperbolehkan.'
-    )
-    .describe('ID Study pemeriksaan pasien di PACS (contoh: STUDY_TB_001, STUDY_STROKE_002, STUDY_NORMAL_003)'),
+  studyId: studyIdSchema,
 });
 
 // Schema Data Pasien dari DICOM

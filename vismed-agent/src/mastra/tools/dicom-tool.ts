@@ -1,22 +1,14 @@
 import { createTool } from '@mastra/core/tools';
 import { z } from 'zod';
 import mockDicom from '../mocks/mock-dicom.json';
+import { studyIdSchema } from '../lib/validation';
 
 export const fetchDicomMetadataTool = createTool({
   id: 'fetch_dicom_metadata',
   description:
     'Mengambil metadata pasien dan modalitas citra DICOM dari PACS berdasarkan ID pemeriksaan (studyId). Mengembalikan informasi pasien, usia, jenis kelamin, keluhan klinis, modalitas (DX/CT), dan deskripsi pemeriksaan.',
   inputSchema: z.object({
-    studyId: z
-      .string()
-      .trim()
-      .regex(
-        /^[A-Za-z0-9_-]{1,64}$/,
-        'Format Study ID tidak valid. Hanya karakter alfanumerik, garis bawah (_), dan tanda hubung (-) yang diperbolehkan.'
-      )
-      .describe(
-        'ID Study pemeriksaan pasien di PACS (contoh: STUDY_TB_001, STUDY_STROKE_002, STUDY_NORMAL_003)'
-      ),
+    studyId: studyIdSchema,
   }),
   outputSchema: z.object({
     success: z.boolean(),
